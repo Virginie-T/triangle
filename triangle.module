@@ -53,11 +53,12 @@ function triangle_form_submit($form, &$form_state) {
 
     $sides = [$side1, $side2, $side3];
     $sorted = sort($sides);
-    var_dump($sorted);
+    drupal_set_message($sorted);
 
-    if ($sorted[2] <= ($sorted[0] + $sorted[1])){
+    if ($sorted[2] <= ($sorted[0] + $sorted[1])) {
 
-        $_SESSION['triangle_output'] = "this works";
+        $_SESSION['triangle_output'] = 'this works';
+
         // if ($side1 === $side2 && $side2 === $side3 && $side3 === $side1) {
         //    $_SESSION['triangle_output'] = "equilateral";
         //
