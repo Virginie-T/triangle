@@ -53,7 +53,8 @@ function triangle_form_submit($form, &$form_state) {
 
     $sides = [$side1, $side2, $side3];
     $sorted = sort($sides);
-    drupal_set_message($sorted);
+    drupal_set_message('sides: ' . $sides);
+    drupal_set_message('sorted: ' . $sorted);
 
     if ($sorted[2] <= ($sorted[0] + $sorted[1])) {
 
