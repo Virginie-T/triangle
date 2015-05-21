@@ -1,0 +1,5 @@
+name = Triangle
+description = Let the user to enter three numbers representing the length of three sides of a triangle.
+package = Epicodus Examples
+core = 7.x
+files[] = triangle.module

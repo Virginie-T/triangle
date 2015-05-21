@@ -1,0 +1,79 @@
+<?php
+
+function triangle_menu() {
+    $items['triangle'] = array(
+        'title' => 'Triangle Checker',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('triangle_form'),
+        'access callback' => TRUE,
+        'type' => MENU_NORMAL_ITEM,
+    );
+    $items['success'] = array(
+        'title' => 'Success',
+        'page callback' => 'triangle_success',
+        'access callback' => TRUE,
+        'type' => MENU_CALLBACK,
+    );
+    return $items;
+}
+
+function triangle_form() {
+    $form['side1'] = array(
+        '#title' => 'Side One',
+        '#type' => 'textfield',
+        '#description' => t('Please enter the value for side 1.'),
+        '#element_validate' => array('element_validate_integer_positive'),
+        '#required' => TRUE;
+    );
+    $form['side2'] = array(
+        '#title' => 'Side Two',
+        '#type' => 'textfield',
+        '#description' => t('Please enter the value for side 2.'),
+        '#element_validate' => array('element_validate_integer_positive'),
+        '#required' => TRUE;
+    );
+    $form['side3'] = array(
+        '#title' => 'Side Three',
+        '#type' => 'textfield',
+        '#description' => t('Please enter the value for side 3.'),
+        '#element_validate' => array('element_validate_integer_positive'),
+        '#required' => TRUE;
+    );
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' => 'Track Triangle',
+    );
+    return $form;
+}
+
+function triangle_form_submit($form, &$form_state) {
+    $side1 = $form_state['values']['side1'];
+    $side2 = $form_state['values']['side2'];
+    $side3 = $form_state['values']['side3'];
+
+    $sides = [$side1, $side2, $side3];
+    $sorted = sort($sides);
+
+
+    if ($sorted[0] <= ($sorted[1] + $sorted[2])){
+
+        if ($side1 === $side2 && $side2 === $side3 && $side3 === $side1){
+           $_SESSION['triangle_output'] = "equilateral";
+
+        } if ($side1 === $side2 || $side2 === $side3 || $side3 === $side1 ){
+            $_SESSION['triangle_output'] = "isosceles";
+
+        } if (($side1 !== $side2) && ($side2 !== $side3)) {
+            $_SESSION['triangle_output'] = "scalene";
+
+        }} else {
+            $_SESSION['triangle_output'] = "impossible";
+    }
+
+    $form_state['redirect'] = 'success';
+
+}
+
+function triangle_success() {
+    return "Your triangle is: " . $_SESSION['triangle_output'];
+}
