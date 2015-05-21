@@ -54,16 +54,15 @@ function triangle_form_submit($form, &$form_state) {
     $sides = [$side1, $side2, $side3];
     $sorted = sort($sides);
 
-
     if ($sorted[0] <= ($sorted[1] + $sorted[2])){
 
-        if ($side1 === $side2 && $side2 === $side3 && $side3 === $side1){
+        if ($side1 === $side2 && $side2 === $side3 && $side3 === $side1) {
            $_SESSION['triangle_output'] = "equilateral";
 
-        } if ($side1 === $side2 || $side2 === $side3 || $side3 === $side1 ){
+       } else if ($side1 === $side2 || $side2 === $side3 || $side3 === $side1 ) {
             $_SESSION['triangle_output'] = "isosceles";
 
-        } if (($side1 !== $side2) && ($side2 !== $side3)) {
+        } else if (($side1 !== $side2) && ($side2 !== $side3)) {
             $_SESSION['triangle_output'] = "scalene";
 
         }} else {
