@@ -23,21 +23,21 @@ function triangle_form() {
         '#type' => 'textfield',
         '#description' => t('Please enter the value for side 1.'),
         '#element_validate' => array('element_validate_integer_positive'),
-        '#required' => TRUE;
+        '#required' => TRUE,
     );
     $form['side2'] = array(
         '#title' => 'Side Two',
         '#type' => 'textfield',
         '#description' => t('Please enter the value for side 2.'),
         '#element_validate' => array('element_validate_integer_positive'),
-        '#required' => TRUE;
+        '#required' => TRUE,
     );
     $form['side3'] = array(
         '#title' => 'Side Three',
         '#type' => 'textfield',
         '#description' => t('Please enter the value for side 3.'),
         '#element_validate' => array('element_validate_integer_positive'),
-        '#required' => TRUE;
+        '#required' => TRUE,
     );
     $form['submit'] = array(
         '#type' => 'submit',
